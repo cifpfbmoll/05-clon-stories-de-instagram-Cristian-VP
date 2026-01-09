@@ -1,73 +1,38 @@
-# React + TypeScript + Vite
+# Instagram Stories Clone
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Proyecto educativo que replica el flujo de Instagram Stories empleando React 19, TypeScript, Vite y Tailwind CSS. Incluye compresión ligera de imágenes, almacenamiento local y controles táctiles para avanzar, retroceder o pausar.
 
-Currently, two official plugins are available:
+## <u>[Ver en GitHub Pages](https://cristian-vp.github.io/stories_clon/)</u>
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Demo Desktop
 
-## React Compiler
+<video src="./media/desktop.mp4" controls width="720" preload="metadata">
+  Tu navegador no soporta la reproducción de video embebido.
+</video>  
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Demo móvil
 
-## Expanding the ESLint configuration
+<video src="./media/mobil.mp4" controls width="720" preload="metadata">
+  Tu navegador no soporta la reproducción de video embebido.
+</video>
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Características principales
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- Creación y visualización de stories con avance automático de 3 segundos y barra de progreso.
+- Persistencia en LocalStorage con expiración a las 24 horas.
+- Gestos táctiles: tap para navegar, hold para pausar, swipe down para cerrar el visor.
+- Diseño responsivo orientado a móvil con comportamiento consistente en tablet y desktop.
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## Uso básico
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+Crea una story desde el botón de subida, añade una o varias imágenes y ábrelas en el visor para comprobar el avance automático. Mantén pulsado para pausar y navega con taps en los laterales o deslizando hacia abajo para cerrar.
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Arquitectura breve
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+La UI se compone de componentes reutilizables (`ProgressBar`, `StoryCircle`, `StoryViewer`, `UploadButton`) orquestados por un contexto global (`StoriesContext`) y hooks especializados (`useStoryTimer`, `useGestures`) que gestionan temporizador, gestos y estado. Los servicios (`imageServices`, `storageServices`) encapsulan la compresión en canvas y el acceso a LocalStorage.
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## Almacenamiento y limpieza
+
+Cada story guarda un identificador, la imagen comprimida en Base64 y la marca de tiempo de creación. Un proceso de limpieza elimina historias con más de 24 horas para evitar saturar el almacenamiento del navegador.
+
+
