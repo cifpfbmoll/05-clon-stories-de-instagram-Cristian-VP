@@ -6,13 +6,13 @@ Proyecto educativo que replica el flujo de Instagram Stories empleando React 19,
 
 ## Demo Desktop
 
-<video src="./media/desktop.mp4" controls width="720" preload="metadata">
+<video src="https://raw.githubusercontent.com/cristian-vp/stories_clon/main/media/desktop.mp4" controls width="720" preload="metadata">
   Tu navegador no soporta la reproducción de video embebido.
 </video>  
 
 ## Demo móvil
 
-<video src="./media/mobil.mp4" controls width="720" preload="metadata">
+<video src="https://raw.githubusercontent.com/cristian-vp/stories_clon/main/media/mobil.mp4" controls width="720" preload="metadata">
   Tu navegador no soporta la reproducción de video embebido.
 </video>
 
